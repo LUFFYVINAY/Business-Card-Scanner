@@ -1,0 +1,299 @@
+/* Container styles */
+.container {
+  /*max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;*/
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #FDFBFF ;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: absolute; /* Absolute positioning */
+  left: 50%; /* Center horizontally */
+  top: 50%; /* Center vertically */
+  transform: translate(-50%, -50%); /* Truly center both axes */
+}
+
+/* Title styles */
+
+
+.image-preview-container {
+  margin-top: 20px; /* Space above the container */
+  padding: 15px;
+  background-color: #f9f9f9; /* Light background for readability */
+  border: 1px solid #263238;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  
+}
+
+.image-preview-container h2 {
+  margin-bottom: 10px; /* Space between the title and the image */
+  font-size: 18px;
+  color: #333;
+}
+
+.captured-image {
+  max-width: 100%; /* Ensures the image is responsive */
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ddd; /* Light border around the image */
+  padding: 5px;
+}
+
+
+.result-container{
+  width: 80%; /* Default width */
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word; /* Prevents overflow for long words */
+}
+
+.result-container-container h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.result-container p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+  white-space: pre-wrap; /* Preserve line breaks and spacing */
+}
+
+
+
+
+
+
+h1,
+h2 {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+}
+
+/* File upload styles */
+.file-upload {
+  margin-bottom: 20px;
+}
+
+input[type='file'] {
+  display: none;
+}
+input[type='file'] + label {
+  display: inline-block;
+  background-color: #FDFBFF; /* Scarlet red for file upload label */
+  color: #263238;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type='file'] + label:hover {
+  background-color:#263238  /* Darker shade of scarlet for hover */
+}
+
+input[type='file']:focus + label {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 36, 0, 0.25); /* Scarlet red focus outline */
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type='text'],
+input[type='email'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex; /* Changed to flex for better alignment */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  padding: 10px 15px;
+  background-color: #263238 ; /* Scarlet red for primary buttons */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.btn:hover {
+  background-color: #263238 ; /* Darker shade for hover */
+}
+
+/* Edit and Delete button styles */
+.edit-btn {
+  background-color: #263238 ; /* Scarlet red */
+}
+
+.edit-btn:hover {
+  background-color: #263238 ; /* Darker shade for hover */
+}
+
+.delete-btn {
+  background-color: #263238 ; /* Scarlet red */
+}
+
+.delete-btn:hover {
+  background-color: #263238 ; /* Darker shade for hover */
+}
+
+/* Button container for inline display */
+.button-container {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space between buttons */
+  margin-bottom: 15px; /* Space below buttons */
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.table th {
+  background-color: #263238 ; /* Mint green for table headers */
+  color: #FDFBFF;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #FDFBFF;
+}
+
+.table tbody tr:hover {
+  background-color: #F4F7FA ;
+}
+
+
+
+
+
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Reduce width for smaller devices */
+    width: 90%; /* Maintain smaller width */
+    padding: 15px; /* Adjust padding for mobile devices */
+    border-radius: 8px; /* Slightly smaller border radius */
+}
+
+  h1,
+  h2 {
+    font-size: 24px;
+  }
+
+  .form-group input {
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+  }
+
+  .material-icons {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%; /* Make it even smaller for very small screens */
+    padding: 10px; /* Reduce padding to save space */
+    width: 95%; /* Ensure the width scales properly */
+    border-radius: 5px; /* Adjust for smaller devices */
+}
+
+  h1,
+  h2 {
+    font-size: 20px;
+  }
+
+  .form-group input {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .file-upload,
+  .form-group,
+  .btn {
+    margin-bottom: 10px;
+  }
+
+  input[type='text'],
+  input[type='email'] {
+    width: 100%;
+  }
+}
+@media (max-width: 1024px) {
+  .extracted-words-container {
+    width: 90%; /* Adjust width for tablets */
+    padding: 10px;
+  }
+}
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .extracted-words-container {
+    width: 95%; /* Adjust width for mobile */
+    padding: 8px;
+    font-size: 14px; /* Smaller font size for better fit */
+  }
+}

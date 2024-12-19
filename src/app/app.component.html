@@ -1,0 +1,414 @@
+<!-- <div class="container">
+  <div class="app-container">
+    <app-scanner (dataExtracted)="updateFormWithExtractedData($event)"></app-scanner>
+  </div>  
+  
+
+  <div class="file-upload">
+    <input type="file" id="file-upload" (change)="onFileChange($event)" accept=".xlsx, .xls" class="upload-btn"/>
+    <label for="file-upload" class="upload-label">
+      <span class="material-icons">import_file</span>
+    </label>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" type="text" [(ngModel)]="newEntry.name" required />
+  </div>
+  
+  <div class="form-group">
+    <label for="company">Company:</label>
+    <input id="company" type="text" [(ngModel)]="newEntry.company" required />
+  </div>
+  
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input id="phone" type="text" [(ngModel)]="newEntry.phone" required />
+  </div>
+  
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" type="email" [(ngModel)]="newEntry.email" required />
+  </div>
+  
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input id="address" type="text" [(ngModel)]="newEntry.address" required />
+  </div>
+  
+  <button class="btn" [style.backgroundColor]="buttonColor" (click)="onSubmit()">
+    {{ editIndex !== null ? 'Update Entry' : 'Add Entry' }}
+  </button>
+  
+  <button class="btn" [style.backgroundColor]="buttonColor" (click)="exportElmToExcel()">
+    Export to Excel
+  </button>
+  
+  <h2 [style.color]="titleColor">Details</h2>
+  <table class="table" #userTable>
+    <thead>
+      <tr>
+        <th>Serial No</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.company }}</td>
+        <td>{{ row.phone }}</td>
+        <td>{{ row.email }}</td>
+        <td>{{ row.address }}</td>
+        <td>
+          <button class="btn edit-btn" (click)="editEntry(i)">
+            <span class="material-icons">edit</span>
+          </button>
+          <button class="btn delete-btn" (click)="deleteEntry(i)">
+            <span class="material-icons">delete</span> 
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+
+
+  </div> -->
+
+
+  <!-- <div class="container">
+    
+    <div class="app-container" *ngIf="!isFormVisible && !isTableVisible">
+        <app-scanner (dataExtracted)="updateFormWithExtractedData($event); showForm()"></app-scanner>
+    </div>  
+
+    
+    <div *ngIf="isFormVisible">
+        <button class="btn go-back" (click)="goBack()" aria-label="Go Back">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" type="text" [(ngModel)]="newEntry.name" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="company">Company:</label>
+            <input id="company" type="text" [(ngModel)]="newEntry.company" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input id="phone" type="text" [(ngModel)]="newEntry.phone" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" [(ngModel)]="newEntry.email" required />
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input id="address" type="text" [(ngModel)]="newEntry.address" required />
+        </div>
+        
+        <button class="btn" (click)="onSubmit()">
+            <span class="material-icons">add</span> Add Entry
+        </button>
+
+        <div class="file-upload" style="display:inline-block; margin-left:10px;">
+          <input type="file" id="file-upload" (change)="onFileChange($event)" accept=".xlsx, .xls" class="upload-btn" style="display:none;" />
+          <button class="btn" (click)="triggerFileUpload()" aria-label="Upload File">
+            <span class="material-icons">upload_file</span> Upload File
+          </button>
+        </div>
+
+        <button class="btn" (click)="showTable(); hideForm()" aria-label="Go to Table">
+            <span class="material-icons">table_view</span> Go to Table
+        </button>
+      </div>
+    
+    
+    <div *ngIf="isTableVisible">
+        <button class="btn go-back" (click)="goBack()" aria-label="Go Back">
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <button class="btn save-btn" (click)="saveExcel()" aria-label="Save Data">
+            <span class="material-icons">save</span>
+        </button>
+        <h2 [style.color]="titleColor">Details</h2>
+        <table class="table" #userTable>
+            <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of data; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.company }}</td>
+                    <td>{{ row.phone }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.address }}</td>
+                    <td>
+                        <button class="btn edit-btn" (click)="editEntry(i)">
+                            <span class="material-icons">edit</span>
+                        </button>
+                        <button class="btn delete-btn" (click)="deleteEntry(i)">
+                            <span class="material-icons">delete</span> 
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div> -->
+
+
+
+
+<div class="container">
+  <!-- Scanner Section -->
+  <div class="app-container" *ngIf="!isFormVisible && !isTableVisible">
+      <app-scanner (dataExtracted)="updateFormWithExtractedData($event);  showForm()" (imageCapturedEvent)="onImageCaptured($event)"></app-scanner>
+  </div>  
+
+  <!-- Image Preview Above the Form -->
+   <div *ngIf="imageSrc && isFormVisible && !isExtracting && !isTableVisible" class="image-preview-container">
+    <h2>Captured Image</h2>
+    <img [src]="imageSrc" alt="Captured Image" class="captured-image">
+</div>
+
+  <!-- Form Section -->
+  <div *ngIf="isFormVisible">
+      <button class="btn go-back" (click)="goBack()" aria-label="Go Back">
+          <span class="material-icons">arrow_back</span>
+      </button>
+      
+      <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" type="text" [(ngModel)]="newEntry.name" required />
+      </div>
+      
+      <div class="form-group">
+          <label for="company">Company:</label>
+          <input id="company" type="text" [(ngModel)]="newEntry.company" required />
+      </div>
+      
+      <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input id="phone" type="text" [(ngModel)]="newEntry.phone" required />
+      </div>
+      
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" type="email" [(ngModel)]="newEntry.email" required />
+      </div>
+      
+      <div class="form-group">
+          <label for="address">Address:</label>
+          <input id="address" type="text" [(ngModel)]="newEntry.address" required />
+      </div>
+      
+      <button class="btn" (click)="onSubmit()">
+          <span class="material-icons">add</span> Add Entry
+      </button>
+
+      <div class="file-upload" style="display:inline-block; margin-left:10px;">
+        <input type="file" id="file-upload" (change)="onFileChange($event)" accept=".xlsx, .xls" class="upload-btn" style="display:none;" />
+        <button class="btn" (click)="triggerFileUpload()" aria-label="Upload File">
+          <span class="material-icons">upload_file</span> Upload File
+        </button>
+      </div>
+
+      <button class="btn" (click)="showTable(); hideForm()" aria-label="Go to Table">
+          <span class="material-icons">table_view</span> Go to Table
+      </button>
+
+
+
+
+      <div *ngIf="extractedWords" class="extracted-words-container">
+        <h2>Extracted Text</h2>
+        <p>{{ extractedWords }}</p> 
+      </div>
+      
+
+
+    
+  </div>
+
+  <!-- Extracted Text Below the Form  -->
+  
+ 
+  
+  <!-- Table Section -->
+  <div *ngIf="isTableVisible">
+      <button class="btn go-back" (click)="goBack()" aria-label="Go Back">
+          <span class="material-icons">arrow_back</span>
+      </button>
+      <button class="btn save-btn" (click)="saveExcel()" aria-label="Save Data">
+          <span class="material-icons">save</span>
+      </button>
+      <h2 [style.color]="titleColor">Details</h2>
+      <table class="table" #userTable>
+          <thead>
+              <tr>
+                  <th>Serial No</th>
+                  <th>Name</th>
+                  <th>Company</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of data; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ row.name }}</td>
+                  <td>{{ row.company }}</td>
+                  <td>{{ row.phone }}</td>
+                  <td>{{ row.email }}</td>
+                  <td>{{ row.address }}</td>
+                  <td>
+                      <button class="btn edit-btn" (click)="editEntry(i)">
+                          <span class="material-icons">edit</span>
+                      </button>
+                      <button class="btn delete-btn" (click)="deleteEntry(i)">
+                          <span class="material-icons">delete</span> 
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+      </table> 
+  </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+  <div class="app-container">
+    <h1 [style.color]="titleColor">Business Card Scanner</h1>
+    <app-scanner
+  (dataExtractedFront)="onDataExtractedFront($event)"
+  (dataExtractedBack)="onDataExtractedBack($event)"
+  (imageCaptured)="handleImageCapture($event)"
+  (imageUploaded)="handleImageUpload($event)"
+></app-scanner>
+
+
+    
+    <button class="btn" [style.backgroundColor]="buttonColor" *ngIf="!isImageUploaded && !isTextExtracted" (click)="startScan()">
+      Scan Business Card
+    </button>
+
+    
+    <app-scanner *ngIf="isScanning && !isImageUploaded" (dataExtracted)="onDataExtractedFront($event)"></app-scanner>
+
+   
+    <div *ngIf="isScanning && !isImageUploaded" class="icon-buttons">
+      <button class="btn icon-btn" (click)="captureImage()">
+        <span class="material-icons">camera_alt</span> 
+      </button>
+      <button class="btn icon-btn" (click)="uploadImage()">
+        <span class="material-icons">upload_file</span> 
+      </button>
+    </div>
+
+    
+    <div *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="Captured Image" class="image-preview">
+    </div>
+
+    
+    <div *ngIf="isTextExtracted">
+      <h1 [style.color]="titleColor">Excel Data Management</h1>
+
+      
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" [(ngModel)]="newEntry.name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="company">Company:</label>
+        <input id="company" type="text" [(ngModel)]="newEntry.company" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input id="phone" type="text" [(ngModel)]="newEntry.phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" type="email" [(ngModel)]="newEntry.email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input id="address" type="text" [(ngModel)]="newEntry.address" required />
+      </div>
+
+      <button (click)="onSubmit()">Submit</button>
+    </div>
+
+    
+    <table #userTable>
+      <thead>
+        <tr>
+          <th>SR No</th>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of data; let i = index">
+          <td>{{ entry.srNo }}</td>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.company }}</td>
+          <td>{{ entry.phone }}</td>
+          <td>{{ entry.email }}</td>
+          <td>{{ entry.address }}</td>
+          <td>
+            <button (click)="editEntry(i)">Edit</button>
+            <button (click)="deleteEntry(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="exportElmToExcel()">Export to Excel</button>
+  </div>
+</div> -->

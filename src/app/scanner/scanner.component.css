@@ -1,0 +1,283 @@
+.scanner-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 40px;
+    border-radius: 8px;
+    background-color: #F4F7FA ; /* Mint green background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+.video-preview {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 6px;
+    border: 4px solid #FDFBFF; /* Border will show only when class is applied */
+    margin-bottom: 10px;
+}
+
+/* Hide the video preview by default */
+.hidden {
+    display: none;
+}
+
+/* Transition effect (optional) to make it appear smoothly */
+.video-preview {
+    transition: border 0.3s ease, visibility 0.3s ease;
+}
+
+button.switch-camera-btn {
+    background-color: #6c757d; /* Keep the gray color for switch camera button */
+}
+
+button.switch-camera-btn:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+.button-group {
+    max-width: 600px; /* Similar max-width as scanner-container */
+    margin: 0 auto; /* Center align */
+    padding: 20px; /* Consistent padding */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #263238; /* Mint green background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center content */
+    font-family: Arial, sans-serif; /* Consistent font */
+    display: flex; /* Use flex to align buttons */
+    justify-content: space-around; /* Space out buttons evenly */
+    flex-wrap: wrap; /* Wrap buttons if needed on smaller screens */
+}
+
+.button-group .btn {
+    display: flex; /* Center icon and text */
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    background-color: #FDFBFF; /* Scarlet red */
+    color: #263238;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin: 5px; /* Add margin for spacing */
+    width: 100px; /* Fixed width for consistency */
+}
+
+.button-group .btn:hover {
+    background-color:#263238 ; /* Darker scarlet on hover */
+}
+.dynamic-heading {
+    font-size: 24px; /* Larger font size for emphasis */
+    font-weight: bold; /* Bold font for prominence */
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #263238 ; /* Green color for the text */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+}
+
+
+
+
+
+.btn {
+    display: block;
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+    padding: 10px 15px; /* Added padding for consistent size */
+    background-color: #263238 ; /* Scarlet red for buttons */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 16px; /* Font size */
+    margin: 5px; /* Margin for spacing between buttons */
+}
+
+.btn:hover {
+    background-color:#263238 ; /* Darker scarlet red on hover */
+}
+
+.card-selection {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the buttons horizontally */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin: 10px 0; /* Space around the card selection */
+}
+
+.card-selection .btn {
+    display: flex; /* Use flexbox for icon alignment */
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+    width: 80px; /* Set a fixed width for consistent sizing */
+    height: 80px; /* Set a fixed height for buttons */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    background-color: #263238  ; /* Scarlet red for button color */
+    color: white; /* Icon color */
+}
+
+.card-selection .btn:hover {
+    background-color: #F4F7FA ; /* Darker scarlet red on hover */
+}
+
+.material-icons {
+    font-size: 36px; /* Adjust icon size */
+}
+.back-btn {
+    margin-top: 10px; /* Space above the back button */
+    background-color: #263238 ; /* Scarlet red for back button */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    padding: 10px 15px; /* Same padding as other buttons */
+    font-size: 16px; /* Font size */
+}
+
+.back-btn:hover {
+    background-color: #F4F7FA ; /* Darker scarlet red on hover */
+}
+
+input[type="file"] {
+    display: none; 
+}
+
+input[type="file"] + label {
+    display: inline-block;
+    background-color: #263238 ; /* Scarlet red for file upload label */
+    color: white;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"] + label:hover {
+    background-color: #263238 ; /* Darker scarlet red on hover */
+}
+
+input[type="file"]:focus + label {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 36, 0, 0.25); /* Scarlet red focus outline */
+}
+
+input[type="file"] + label:active {
+    background-color:#263238 ; /* Darker scarlet for active state */
+}
+
+.image-preview-container {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.captured-image {
+    max-width: 100%;
+    border: 2px solid #263238 ;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+#progress {
+    width: 100%;
+    background-color: #F4F7FA ;
+    border-radius: 4px;
+    margin: 15px 0;
+    height: 24px;
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: #263238 ; /* Keep green for the progress bar */
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+#result p {
+    margin: 5px 0;
+}
+
+#result h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .scanner-container {
+        padding: 10px;
+    }
+    
+    .button-group {
+        padding: 10px; /* Reduce padding */
+    }
+
+    .button-group .btn {
+        width: auto; /* Adjust button width on smaller screens */
+        flex: 1 1 45%; /* Allow buttons to take up more space */
+        margin: 5px 2%; /* Adjust margin for spacing */
+    }
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .dynamic-heading {
+        font-size: 20px; /* Smaller font size for mobile devices */
+    }
+
+    .card-selection .btn {
+        flex: 1 1 45%; /* Make buttons take up less space on small screens */
+        max-width: none; /* Remove max width for smaller screens */
+    }
+
+}
+@media (max-width: 48px){
+    .scanner-container {
+        padding: 10px;
+    }
+    
+    .button-group {
+        padding: 5px; /* Further reduce padding */
+        flex-direction: column; /* Stack buttons vertically */
+    }
+
+    .button-group .btn {
+        width: 80%; /* Take up most of the screen width */
+        margin: 10px auto; /* Center buttons with more margin */
+    }
+
+}

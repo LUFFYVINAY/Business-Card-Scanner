@@ -1,0 +1,276 @@
+<!-- <div class="scanner-container">
+  <h1>Business Card Scanner</h1>
+  
+  <video #videoElement class="video-preview" autoplay></video>
+
+  <div class="button-group">
+      <button (click)="startCamera()" class="btn" title="Start Camera">
+          <span class="material-icons">play_arrow</span>
+      </button>
+      <button (click)="captureImage()" [disabled]="!isCameraActive" class="btn" title="Capture Image">
+          <span class="material-icons">camera_alt</span>
+      </button>
+      <button (click)="stopCamera()" [disabled]="!isCameraActive" class="btn" title="Stop Camera">
+          <span class="material-icons">stop</span>
+      </button>
+      <button (click)="switchCamera()" [disabled]="!isCameraActive" class="btn" title="Switch Camera">
+          <span class="material-icons">switch_camera</span>
+      </button>
+      
+      <button (click)="rescan()" [disabled]="!imageSrc" class="btn" title="Rescan">
+          <span class="material-icons">restart_alt</span>
+      </button>
+  </div>
+
+  <div class="file-upload">
+      <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/jpeg, image/png, image/jpg" class="upload-btn"/>
+      <label for="file-upload" class="upload-label">
+          <span class="material-icons">upload_file</span>
+      </label>
+  </div>
+
+  <div *ngIf="imageSrc" class="image-preview-container">
+      <h2>Captured Image</h2>
+      <img [src]="imageSrc" alt="Captured Image" class="captured-image">
+      <button (click)="extractText()" [disabled]="isExtracting" class="btn extract-btn">
+          <span class="material-icons">text_snippet</span>
+      </button>
+  </div>
+
+  <div id="progress" *ngIf="isExtracting" class="progress-container">
+      <div id="progress-bar" class="progress-bar" [style.width.%]="progress">{{ progress }}%</div>
+  </div>
+
+  <div id="result" *ngIf="extractedData" class="result-container">
+      <h2>Extracted Data:</h2>
+      <p><strong>Company Name:</strong> {{ extractedData.companyName || 'N/A' }}</p>
+      <p><strong>Name:</strong> {{ extractedData.name || 'N/A' }}</p>
+      <p><strong>Phone Number:</strong> {{ extractedData.phoneNumber || 'N/A' }}</p>
+      <p><strong>Email:</strong> {{ extractedData.email || 'N/A' }}</p>
+      <p><strong>Address:</strong> {{ extractedData.address || 'N/A' }}</p>
+  </div>
+</div> -->
+
+<!------this original code from here ----->
+
+<div class="scanner-container" style="background-color: #A7C6ED;"> 
+  <div class="card-selection" *ngIf="!isCardSelected">
+    <button (click)="setCardType('one-side')" class="btn">
+      <span class="material-icons">insert_page_break</span>
+    </button>
+    <button (click)="setCardType('two-side')" class="btn">
+      <span class="material-icons">insert_drive_file</span>
+    </button>
+  </div>
+  
+  <div class="video-section" *ngIf="isCardSelected">
+    <video 
+        #videoElement 
+        [class.video-preview]="isCameraActive" 
+        [class.hidden]="!isCameraActive" 
+        autoplay>
+    </video>
+
+    <div class="button-group" *ngIf="!isCameraActive && !imageSrc">
+        <button (click)="startCamera()" class="btn" title="Start Camera">
+            <span class="material-icons">play_arrow</span>
+        </button>
+
+        <div class="file-upload">
+            <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/jpeg, image/png, image/jpg" class="upload-btn" style="display:none;" />
+            <button (click)="triggerFileUpload()" class="btn upload-btn">
+                <span class="material-icons">upload_file</span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    
+    <div class="button-group" *ngIf="isCameraActive && !imageCaptured">
+      <button (click)="captureImage()" class="btn" title="Capture Image">
+        <span class="material-icons">camera_alt</span>
+      </button>
+      <button (click)="stopCamera()" class="btn" title="Stop Camera">
+        <span class="material-icons">stop</span>
+      </button>
+      <button (click)="switchCamera()" class="btn switch-camera-btn" title="Switch Camera">
+        <span class="material-icons">switch_camera</span>
+      </button>
+    </div>
+
+    
+    
+
+<div *ngIf="imageSrc && !isExtracting" class="image-preview-container">
+    <h2>Captured Image</h2>
+    <img [src]="imageSrc" alt="Captured Image" class="captured-image">
+
+    <div class="button-group">
+        <button (click)="extractText()" [disabled]="isExtracting" class="btn extract-btn">
+            <span class="material-icons">text_snippet</span> Extract Text
+        </button>
+        <button (click)="rescan()" class="btn rescan-btn" title="Rescan">
+            <span class="material-icons">restart_alt</span> Rescan
+        </button>
+    </div>
+</div>
+
+<div id="progress" *ngIf="isExtracting" class="progress-container">
+    <div id="progress-bar" class="progress-bar" [style.width.%]="progress">{{ progress }}%</div>
+</div>
+
+    <!-- New Extracted Text Container -->
+  <div *ngIf="extractedData" class="extracted-text-container">
+    <h2>Extracted Text</h2>
+    <p>{{ extractedData }}</p>
+  </div>
+
+
+    <div id="result" *ngIf="extractedData" class="result-container">
+      <h2>Extracted Data:</h2>
+      <p><strong>Company Name:</strong> {{ extractedData.companyName || 'N/A' }}</p>
+      <p><strong>Name:</strong> {{ extractedData.name || 'N/A' }}</p>
+      <p><strong>Phone Number:</strong> {{ extractedData.phoneNumber || 'N/A' }}</p>
+      <p><strong>Email:</strong> {{ extractedData.email || 'N/A' }}</p>
+      <p><strong>Address:</strong> {{ extractedData.address || 'N/A' }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="scanner-container">
+    <h1>Business Card Scanner</h1>
+    <video #videoElement class="video-preview" autoplay></video>
+    
+    <div class="button-group">
+      <button (click)="startCamera()" class="btn">Start Camera</button>
+      <button (click)="captureImage()" [disabled]="!isCameraActive" class="btn">Capture Image</button>
+      <button (click)="stopCamera()" [disabled]="!isCameraActive" class="btn">Stop Camera</button>
+      <button (click)="switchCamera()" [disabled]="!isCameraActive" class="btn">Switch Camera</button>
+    </div>
+  
+    <div class="file-upload">
+      <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/jpeg, image/png, image/jpg" class="upload-btn"/>
+      <label for="file-upload" class="upload-label">Upload Business Card</label>
+    </div>
+  
+    <div *ngIf="imageSrc" class="image-preview-container">
+      <h2>Captured Image</h2>
+      <img [src]="imageSrc" alt="Captured Image" class="captured-image">
+      <button (click)="extractText()" [disabled]="isExtracting" class="btn extract-btn">Extract Text</button>
+    </div>
+  
+    <div *ngIf="isExtracting" class="progress-bar">
+      <p>Extracting text... ({{progress}}%)</p>
+    </div>
+  
+    <div *ngIf="extractedData" class="extracted-data">
+      <h2>Extracted Information</h2>
+      <p><strong>Name:</strong> {{extractedData?.name}}</p>
+      <p><strong>Company Name:</strong> {{extractedData?.companyName}}</p>
+      <p><strong>Phone Number:</strong> {{extractedData?.phoneNumber}}</p>
+      <p><strong>Email:</strong> {{extractedData?.email}}</p>
+      <p><strong>Address:</strong> {{extractedData?.address}}</p>
+    </div>
+
+    
+  </div>
+   <div class="scanner-container">
+    <h1>Business Card Scanner</h1>
+  
+   
+    <div class="card-type-selection">
+      <label>
+        <input type="radio" name="cardType" (change)="onCardTypeChange(false)" checked /> Single-Sided
+      </label>
+      <label>
+        <input type="radio" name="cardType" (change)="onCardTypeChange(true)" /> Double-Sided
+      </label>
+    </div>
+  
+    <video #videoElement class="video-preview" autoplay></video>
+  
+    <div class="button-group">
+      <button (click)="startCamera()" class="btn">Start Camera</button>
+      <button (click)="captureImage()" [disabled]="!isCameraActive" class="btn">Capture Image</button>
+      <button (click)="stopCamera()" [disabled]="!isCameraActive" class="btn">Stop Camera</button>
+      <button (click)="switchCamera()" [disabled]="!isCameraActive" class="btn">Switch Camera</button>
+    </div>
+  
+    
+    <div *ngIf="showUploadPrompt">
+      <button (click)="uploadFrontImage()" class="btn">Upload Business Card Front</button>
+      <div *ngIf="isDoubleSided">
+        <button (click)="uploadBackImage()" class="btn">Upload Business Card Back</button>
+      </div>
+    </div>
+  
+    
+    <input
+      type="file"
+      id="file-upload-front"
+      (change)="onFileChange($event, 'front')"
+      accept="image/jpeg, image/png"
+      class="upload-btn"
+      style="display: none;"
+    />
+    <input
+      type="file"
+      id="file-upload-back"
+      (change)="onFileChange($event, 'back')"
+      accept="image/jpeg, image/png"
+      class="upload-btn"
+      style="display: none;"
+    />
+    
+  <div *ngIf="frontImageSrc || backImageSrc">
+    <button (click)="rescan()" class="btn rescan-btn">Rescan</button>
+  </div>
+ 
+    <div class="image-preview-container" *ngIf="frontImageSrc">
+      <h2>Captured Front Side</h2>
+      <img [src]="frontImageSrc" alt="Captured Front Image" class="captured-image" />
+    </div>
+  
+    <div class="image-preview-container" *ngIf="backImageSrc && isDoubleSided">
+      <h2>Captured Back Side</h2>
+      <img [src]="backImageSrc" alt="Captured Back Image" class="captured-image" />
+    </div>
+  
+   
+    <div>
+      <button (click)="extractText()" [disabled]="isExtracting || !frontImageSrc" class="btn extract-btn">Extract Text</button>
+    </div>
+  
+    <div *ngIf="isExtracting" class="progress-bar">
+      <p>Extracting text... ({{ progress }}%)</p>
+      <div class="progress" [style.width.%]="progress"></div>
+    </div>
+  
+    
+    <div *ngIf="extractedDataFront || extractedDataBack" class="extracted-data">
+      <h2>Extracted Information</h2>
+      <p><strong>Name:</strong> {{ extractedDataFront?.name || extractedDataBack?.name }}</p>
+      <p><strong>Company Name:</strong> {{ extractedDataFront?.companyName || extractedDataBack?.companyName }}</p>
+      <p><strong>Phone Number:</strong> {{ extractedDataFront?.phoneNumber || extractedDataBack?.phoneNumber }}</p>
+      <p><strong>Email:</strong> {{ extractedDataFront?.email || extractedDataBack?.email }}</p>
+      <p><strong>Address:</strong> {{ extractedDataFront?.address || extractedDataBack?.address }}</p>
+    </div>
+  </div> -->
